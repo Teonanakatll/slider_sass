@@ -1,0 +1,35 @@
+.button {
+	display: inline-block;
+	background-color: $accent;
+	color: #fff;
+	font-size: 10px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	border: none;
+	position: relative;
+	padding: 14px 26px;
+	font-weight: 800;
+	&::before {
+		content: '';
+		position: absolute;
+		// делаем ширину 0 для того чтобы при наведении выезжал bg
+		width: 0;
+		height: 100%;
+		background-color: $dark;
+		top: 0;
+		left: 0;
+		transition: width .5s ease-out;
+	}
+	// т.к. класс .button может присваиваться тегу i (ссылке) у которорого есть свойство focus которое 
+	// работает так-же как hover, поэтому это нужно учесть
+	&:hover, &:focus {
+		// при наведении обращаемся к элементу before
+		&::before {
+			width: 100%;
+		}
+	}
+	span {
+		position: relative;
+		z-index: 2;
+	}
+}

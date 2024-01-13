@@ -1,0 +1,531 @@
+body, html {
+	height: 100%;
+}
+
+.home-header {
+	background-color: $deep;
+	height: 100%;
+	color: #fff;
+	// делаем pt:$size чтобы сместить весь контент под .top-line
+	padding-top: $size;
+}
+
+.top-line {
+	position: absolute;
+	width: 100%;
+	height: $size;
+	top: 0;
+	border-bottom: 1px solid rgba(#fff, $border-opacity);
+	z-index: 10;
+	background-color: $deep;
+	display: flex;
+	align-items: center;
+}
+
+.logo {
+	flex: 0 0 200px;
+	// несмотря на то что .logo является частью другой флекс конструкции элементы внутри него
+	// (.logo__image, .logo__text) можно также позиционировать флексами
+	display: flex;
+	align-items: center;
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 13px;
+	font-weight: 500;
+	letter-spacing: 0.5em;
+	text-decoration: none;
+	&:hover, &:focus {
+		color: #fff;
+		
+	}
+}
+
+.logo__img-wrapper {
+	height: $size;
+	width: $size;
+	// элементы внутри врапера позиционируем с помощю флекс-бокс
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.menu-button-container {
+	// flex: flex-grow flex-shrink flex-basis. Кооф. растяжения сжатия база
+	flex: 0 0 200px;
+	text-align: right;
+	position: relative;
+	height: $size;
+}
+
+.menu-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: $size;
+	height: $size;
+	background-color: #3c3c3c;
+	background-image: url(../images/dist/bars-solid.svg);
+	background-repeat: no-repeat;
+	// центрируем бг
+	background-position: center;
+	transition: background .25s ease-out;
+	&:hover {
+		background-color: $accent;
+	}
+}
+
+.top-line__decoration {
+	// flex: flex-grow flex-shrink flex-basis. Кооф. растяжения сжатия база
+	flex: 1 0 0;
+	text-align: center;
+	&::before {
+		content: '';
+		height: 1px;
+		width: 50px;
+		background-color: #fff;
+		display: inline-block;
+		opacity: $border-opacity*1.5;
+		position: relative;
+		top: -5px;
+	}
+}
+
+.top-line__contacts {
+	text-transform: uppercase;
+	font-size: 10px;
+	font-weight: 500;
+	letter-spacing: 0.4em;
+	color: rgba(#fff, .5);
+	display: flex;
+	align-items: center;
+}
+
+.top-line__separator {
+	width: 1px;
+	height: 30px;
+	background-color: rgba(#fff, $border-opacity*1.5);
+	margin: 0 20px;
+}
+
+.top-line__numbers,
+.top-line__text {
+	font-family: roboto-vh, sans-serif;
+	margin-left: 7px;
+	// на телефонах телефон служит ссылкой для осуществления звонка по номеру
+	a {
+		color: $accent;
+	}
+}
+
+.top-line__numbers {
+	color: $accent;
+}
+
+.top-line__text {
+	color: rgba(#fff, .75);
+}
+
+
+// ACIDE
+
+.home-header__content {
+	height: 100%;
+}
+
+.home-aside {
+	background-color: $dark;
+	width: $size;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	padding-top: $size;
+	display: flex;
+	// направление главной оси флексов
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	z-index: 5;
+}
+
+.home-aside__decoration {
+	flex: 1 0 0;
+	background-image: url(../images/dist/decoration.svg);
+	background-repeat: no-repeat;
+	width: 100%;
+	background-position: center;
+}
+
+.home-aside__soc {
+	flex: 1 0 0;
+}
+
+.home-aside__share-icon {
+	width: $size;
+	// flex: flex-grow flex-shrink flex-basis. Кооф. растяжения сжатия база
+	flex: 0 0 $size;
+	background-color: $accent;
+	background-image: url(../images/dist/share-solid.svg);
+	background-size: 12px;
+	background-repeat: no-repeat;
+	// центрируем бг
+	background-position: center;
+}
+
+.soc-item {
+	// задаём ссылке db чтобы использовать блочные свойства
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 40px;
+	height: 40px;
+	border: 1px solid rgba(#fff, $border-opacity);
+	// чтобы бордеры при накладывании не складывались, делаем нижний бордер прозрачным
+	border-bottom: 1px solid transparent;
+	margin-top: -1px;
+	// анимируем смену цвета bg
+	transition: background .5s ease-out;
+	// т.к. нижние бордеры прозрачные, последний border сделаем видимым весь
+	&:last-child {
+		border: 1px solid rgba(#fff, $border-opacity);
+	}
+	img {
+		width: 15px;
+		height: auto;
+		// указываем mh для того чтобы ограничить высоту вытянутых иконок
+		max-height: 15px;
+		opacity: 0.3;
+		// анимируем смену opacity
+		transition: opacity, .5s ease-out;
+	}
+	&:hover {
+		background-color: $accent;
+		img {
+			opacity: 1;
+		}
+	}
+}
+
+
+// SLIDER
+
+
+.slider-container {
+	padding-left: $size;
+	height: 100%;
+	width: 100%;
+	// overflow: hidden Значение hidden скрывает часть содержимого, которая не поместилась в контейнере.
+	// чтобы слайды не заезжали на aside
+	overflow: hidden;
+	position: relative;
+}
+
+.slider-bottom {
+	// ширина 75% экрана - ширина иконки .home-aside__share-icon
+	width: calc(75% - #{($size)});
+	height: $size;
+	position: absolute;
+	bottom: 0;
+	left: $size;
+	display: flex;
+	align-items: center;
+	// justify-content: space-around;
+	z-index: 5;
+}
+
+.slider-share {
+	// flex: flex-grow flex-shrink flex-basis. Кооф. растяжения сжатия база
+	flex: 0 1 auto;
+
+}
+
+.slider-share__items {
+	display: flex;
+	position: relative;
+	bottom: 0;
+}
+
+.slider-share__item {
+	background-color: $dark;
+	height: $size;
+	width: $size;
+	border: none;
+	border-right: 1px solid rgba(#fff, $border-opacity);
+	margin: 0;
+	margin-left: -0.5px;
+	&:last-child {
+		border: none;
+		&::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 3px;
+			height: 100%;
+			background-color: $accent;
+		}
+	}
+}
+
+.slider-img {
+	height: 100%;
+	width: 75%;
+	overflow: hidden;
+	position: relative;
+	// устанавливаем оверлей
+	&::before {
+		content: '';
+		position: absolute;
+		z-index: 2;
+		background-color: rgba(#000, .35);
+		height: 100%;
+		width: 100%;
+	}
+}
+
+.slider-img__slide {
+	height: 100%;
+	overflow: hidden;
+}
+
+.slider-img__bg {
+	height: 100%;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.slider-text {
+	position: absolute;
+	z-index: 3;
+	// height: 100%;
+	height: calc(100% - #{$size});
+	width: 100%;
+}
+
+.slider-text__slide {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.slider-text__content {
+	text-align: right;
+	padding-right: 22.5%;
+}
+
+.slider-text__heading {
+	text-transform: uppercase;
+	font-size: 60px;
+	font-weight: 700;
+	line-height: 120%;
+	font-family: oswald-vh, sans-serif;
+	max-width: 780px;
+	// CSS-свойство float указывает, что текущий элемент должен быть изъят из обычного flow (потока) и прижат
+	// к левой или правой стороне родительского элемента. Текст и inline элементы будут обтекать такой элемент.
+	// Плавающий элемент - это любой элемент со свойством float отличным от none .
+	float: right;
+	span {
+		// отключаем перенос слов
+		white-space: nowrap;
+		color: $accent;
+	}
+}
+
+.slider-text__desc {
+	float: right;
+	max-width: 500px;
+	font-family: raleway-vh, sans-serif;
+	font-weight: 500;
+	font-size: 13px;
+	// line-height по умолчанию и есть 170%, так что можно не указывать
+	// line-height: 170%;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	// чтобы текст не съезжал влево на больших дисплеях (float: right), запретим обтекать его другим элементам
+	clear: both;
+}
+
+.slider-text__button {
+	float: right;
+	// Clear both – это CSS-свойство, которое указывает, что элемент не должен находиться рядом с
+	// плавающими элементами, а должен спуститься под них и занять всю доступную ширину блока.
+	clear: both;
+}
+
+.swiper-pagination {
+	position: relative;
+}
+
+.slider-pagination {
+	flex: 0 0 140px;
+	display: flex;
+	justify-content: center;
+	height: $size;
+	align-items: center;
+	margin-top: 12px;
+	// position: relative;
+	.swiper-pagination-bullet {
+		width: 6px;
+		height: 6px;
+		opacity: 1;
+		background-color: #fff;
+		// переменная из документации свайпера
+		--swiper-pagination-bullet-horizontal-gap: 7.5px;
+	}
+	// стилизация активного элемента пагинации
+	.swiper-pagination-bullet-active {
+		background-color: $accent;
+		// так как элемент before (кольцо) будет иметь абсолютное позиционирование, родительскому элементу 
+		// устанавливаем position: relative
+		position: relative;
+		&::before {
+			content: '';
+			width: 14px;
+			height: 14px;
+			border: 1px solid $accent;
+			border-radius: 100%;
+			position: absolute;
+			left: -4px;
+			top: -4px;
+		}
+	}
+}
+
+.slider-scrollbar {
+	// т.к. scrollbar единственный резиновый элемент в флекс композиции
+	margin-top: 8px;
+	flex: 1 0 0;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	.swiper-scrollbar {
+		position: relative;
+		height: 1px;
+		background-color: rgba(#fff, 1);
+
+	}
+	.swiper-scrollbar-drag {
+		height: 3px;
+		background-color: $accent;
+		top: -.5px;
+	}
+}
+
+.slider-navigation {
+	flex: 0 0 140px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	.swiper-button-prev, .swiper-button-next {
+		width: 32px;
+		height: 32px;
+		color: $accent;
+		background-color: #3c3c3c;
+		border: 2px solid $accent;
+		border-radius: 100%;
+		top: 8px;
+		&::after {
+			font-size: 10px;
+			position: absolute;
+			top: 10px;
+		}
+		&.swiper-button-disabled {
+			opacity: 1;
+			color: #8a8a8a;
+			border-color: #8a8a8a;
+		}
+	}
+	.swiper-button-prev {
+		left: 0;
+		&::after {
+			left: 10.5px;
+		}
+	}
+	.swiper-button-next {
+		right: 0;
+		&::after {
+			right: 10.5px;
+		}
+	}
+}
+
+.slider-navigation-container {
+	height: 100%;
+	width: 70px;
+	position: relative;
+	margin-bottom: 4px;
+	margin-left: 20px;
+}
+
+.slider-gear {
+	width: 470px;
+	height: 470px;
+	position: absolute;
+	top: 50%;
+	// розицию колеса устанавливаем в процентах для того чтобы при изменении размера экрани
+	// центрировать его по правому краю изображения слайда
+	right: calc(24% - 238px);
+	margin-top: -269px;
+	// background-color: #fff;
+	background-image: url(../images/dist/gear.svg);
+	background-size: cover;
+	background-position: center;
+	z-index: 2;
+}
+
+.slider-pagination-count {
+	position: absolute;
+	right: 20px;
+	top: 30px;
+	// указываем фиксированную высоту для того чтобы при анимации смены цыфр положение счётчика не сбивалось
+	height: 80px;
+	width: 120px;
+	// для того чтобы смена кадров текстового слайдера не перекрывала счётчик
+	z-index: 20;
+	font-family: oswald-vh, sans-serif;
+	font-weight: 500;
+	font-size: 24px;
+	.current {
+		font-size: 40px;
+		color: $accent;
+		// для облегчения анимированной смены цыфр
+		display: inline-block;
+		// фиксируем минимальную ширину для того чтобы не сбивалось положение счётчика
+		min-width: 42px;
+	}
+}
+
+// .slider-pagination-bottom {
+// 	position: absolute;
+// 	bottom: -17px;
+// 	right: 50px;
+// 	font-family: oswald-vh, sans-serif;
+// 	font-size: 100px;
+// 	font-weight: 500;
+// 	// color: transparent;
+// 	.number {
+// 		-webkit-text-fill-color: transparent;
+// 		-webkit-text-stroke: 1px rgba(#fff, .2);
+// 		margin-right: 5px;
+// 	}
+// 	.dot {
+// 		color: $accent;
+// 		font-size: 90px;
+// 	}
+// }
+
+.slider-pagination-current {
+	right: 40px;
+	bottom: 10px;
+	position: absolute;
+	font-size: 100px;
+	font-family: oswald-vh, sans-serif;
+	color: transparent;
+	-webkit-text-stroke: 1px #7f7f7f;
+	&__dot {
+		color: $accent;
+		-webkit-text-stroke: 1px transparent;
+	}
+}
+
