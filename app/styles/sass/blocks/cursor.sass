@@ -1,0 +1,24 @@
+#cursor
+	position: absolute
+	width: 14px
+	height: 14px
+	background-color: $accent
+	z-index: 50
+	border-radius: 100%
+	// user-select. Свойство CSS, которое разрешает или запрещает возможность выбора текста
+	user-select: none
+	// Свойство pointer-events позволяет управлять тем, как элементы будут реагировать на события мыши или прикосновения к сенсорному экрану.
+	pointer-events: none
+	margin: -8.5px 0 0 -8.5px
+	transform: scale(1)
+	transition: transform .65s cubic-bezier(.75,-1.27,.3,2.33), background .65s ease-in
+	&.active
+		transform: scale(3.4)
+		background-color: rgba(#fff, .1)
+		border: .1px solid $accent
+	// в scss медиа файлы подключаем через +
+	+media-breakpoint-down(sm)
+		display: none
+
+#cursor.hidden
+	transform: scale(.01)
