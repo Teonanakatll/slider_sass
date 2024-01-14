@@ -8,6 +8,10 @@ body, html {
 	color: #fff;
 	// делаем pt:$size чтобы сместить весь контент под .top-line
 	padding-top: $size;
+	// media-breakpoint-down - значит что мы будем работать с медиазапросами ниже разрешения указанного в скобках
+	@include media-breakpoint-down(sm) {
+		padding-top: $size-sm;
+	}
 }
 
 .top-line {
@@ -20,6 +24,14 @@ body, html {
 	background-color: $deep;
 	display: flex;
 	align-items: center;
+	@include media-breakpoint-down(lg) {
+		justify-content: center;
+		padding-left: 200px;
+		padding-right: 75px;
+	}
+	@include media-breakpoint-down(sm) {
+		height: $size-sm;
+	}
 }
 
 .logo {
@@ -38,6 +50,14 @@ body, html {
 		color: #fff;
 		
 	}
+	@include media-breakpoint-down(lg) {
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+	@include media-breakpoint-down(sm) {
+		flex: 1 0 0;
+	}
 }
 
 .logo__img-wrapper {
@@ -47,6 +67,16 @@ body, html {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	@include media-breakpoint-down(sm) {
+		height: $size-sm;
+		width: $size-sm;
+	}
+}
+
+.logo__text {
+	@include media-breakpoint-down(sm) {
+		display: none;
+	}
 }
 
 .menu-button-container {
@@ -55,6 +85,14 @@ body, html {
 	text-align: right;
 	position: relative;
 	height: $size;
+	@include media-breakpoint-down(sm) {
+		height: $size-sm;
+	}
+	@include media-breakpoint-down(lg) {
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
 }
 
 .menu-button {
@@ -72,6 +110,14 @@ body, html {
 	&:hover {
 		background-color: $accent;
 	}
+	@include media-breakpoint-down(lg) {
+		position: absolute;
+		// display: block;
+	}
+	@include media-breakpoint-down(sm) {
+		height: $size-sm;
+		width: $size-sm;
+	}
 }
 
 .top-line__decoration {
@@ -87,6 +133,15 @@ body, html {
 		opacity: $border-opacity*1.5;
 		position: relative;
 		top: -5px;
+	}
+	@include media-breakpoint-down(lg) {
+		display: none;
+	}
+}
+
+@include media-breakpoint-down(md) {
+	.top-line__separator, .top-line__address {
+		display: none;
 	}
 }
 
@@ -119,6 +174,10 @@ body, html {
 
 .top-line__numbers {
 	color: $accent;
+	@include media-breakpoint-down(sm) {
+		padding-right: 90px;
+		white-space: nowrap;
+	}
 }
 
 .top-line__text {
@@ -134,17 +193,21 @@ body, html {
 
 .home-aside {
 	background-color: $dark;
-	width: $size;
 	height: 100%;
 	position: absolute;
 	top: 0;
 	padding-top: $size;
+	width: $size;
 	display: flex;
 	// направление главной оси флексов
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	z-index: 5;
+	@include media-breakpoint-down(sm) {
+		padding-top: $size-sm;
+		width: $size-sm;
+	}
 }
 
 .home-aside__decoration {
@@ -153,10 +216,16 @@ body, html {
 	background-repeat: no-repeat;
 	width: 100%;
 	background-position: center;
+	@include media-breakpoint-down(sm) {
+		display: none;
+	}
 }
 
 .home-aside__soc {
 	flex: 1 0 0;
+	@include media-breakpoint-down(lg) {
+		margin-top: 40px;
+	}
 }
 
 .home-aside__share-icon {
@@ -169,6 +238,10 @@ body, html {
 	background-repeat: no-repeat;
 	// центрируем бг
 	background-position: center;
+	@include media-breakpoint-down(sm) {
+		flex: 0 0 $size-sm;
+		width: $size-sm;
+	}
 }
 
 .soc-item {
@@ -217,19 +290,27 @@ body, html {
 	// чтобы слайды не заезжали на aside
 	overflow: hidden;
 	position: relative;
+	@include media-breakpoint-down(sm) {
+		padding-left: $size-sm;
+	}
 }
 
 .slider-bottom {
 	// ширина 75% экрана - ширина иконки .home-aside__share-icon
 	width: calc(75% - #{($size)});
 	height: $size;
+	left: $size;
 	position: absolute;
 	bottom: 0;
-	left: $size;
 	display: flex;
 	align-items: center;
 	// justify-content: space-around;
 	z-index: 5;
+	@include media-breakpoint-down(sm) {
+		height: $size-sm;
+		left: $size-sm;
+		width: 100%;
+	}
 }
 
 .slider-share {
@@ -264,6 +345,10 @@ body, html {
 			background-color: $accent;
 		}
 	}
+	@include media-breakpoint-down(sm) {
+		height: $size-sm;
+		width: $size-sm;
+	}
 }
 
 .slider-img {
@@ -278,6 +363,9 @@ body, html {
 		z-index: 2;
 		background-color: rgba(#000, .35);
 		height: 100%;
+		width: 100%;
+	}
+	@include media-breakpoint-down(sm) {
 		width: 100%;
 	}
 }
@@ -300,6 +388,9 @@ body, html {
 	// height: 100%;
 	height: calc(100% - #{$size});
 	width: 100%;
+	@include media-breakpoint-down(sm) {
+		height: calc(100% - #{$size-sm});
+	}
 }
 
 .slider-text__slide {
@@ -311,6 +402,9 @@ body, html {
 .slider-text__content {
 	text-align: right;
 	padding-right: 22.5%;
+	@include media-breakpoint-down(md) {
+		padding-left: 25px;
+	}
 }
 
 .slider-text__heading {
@@ -329,6 +423,16 @@ body, html {
 		white-space: nowrap;
 		color: $accent;
 	}
+	@include media-breakpoint-down(md) {
+		font-size: 50px;
+		max-width: 500px;
+	}
+	@include media-breakpoint-down(sm) {
+		font-size: 28px;
+	}
+	// @include media-breakpoint-down(xs) {
+	// 	font-size: 28px;
+	// }
 }
 
 .slider-text__desc {
@@ -343,6 +447,9 @@ body, html {
 	margin-bottom: 20px;
 	// чтобы текст не съезжал влево на больших дисплеях (float: right), запретим обтекать его другим элементам
 	clear: both;
+	@include media-breakpoint-down(sm) {
+		font-size: 12px;
+	}
 }
 
 .slider-text__button {
@@ -389,6 +496,10 @@ body, html {
 			top: -4px;
 		}
 	}
+	@include media-breakpoint-down(sm) {
+		height: $size-sm;
+		display: none;
+	}
 }
 
 .slider-scrollbar {
@@ -409,6 +520,9 @@ body, html {
 		height: 3px;
 		background-color: $accent;
 		top: -.5px;
+	}
+	@include media-breakpoint-down(md) {
+		display: none;
 	}
 }
 
@@ -448,6 +562,9 @@ body, html {
 			right: 10.5px;
 		}
 	}
+	@include media-breakpoint-down(sm) {
+		padding-right: 50px;
+	}
 }
 
 .slider-navigation-container {
@@ -472,6 +589,9 @@ body, html {
 	background-size: cover;
 	background-position: center;
 	z-index: 2;
+	@include media-breakpoint-down(sm) {
+		display: none;
+	}
 }
 
 .slider-pagination-count {
@@ -493,6 +613,14 @@ body, html {
 		display: inline-block;
 		// фиксируем минимальную ширину для того чтобы не сбивалось положение счётчика
 		min-width: 42px;
+	}
+	@include media-breakpoint-down(lg) {
+		top: 0;
+		right: 0;
+		transform:scale(.7)
+	}
+	@include media-breakpoint-down(sm) {
+		display: none;
 	}
 }
 
@@ -526,6 +654,11 @@ body, html {
 	&__dot {
 		color: $accent;
 		-webkit-text-stroke: 1px transparent;
+	}
+	@include media-breakpoint-down(lg) {
+		font-size: 50px;
+		bottom: 0;
+		right: 20px;
 	}
 }
 
